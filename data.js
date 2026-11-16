@@ -1,11 +1,9 @@
 (function (root) {
     'use strict';
     var base = 'https://onhockey.tv/';
-    // GitHub Pages serves the UI. Its TLS works on older MSX clients;
-    // Fly is used only for the dynamic schedule/source proxy API.
-    var apiBase = /(^|\.)github\.io$/i.test(window.location.hostname)
-        ? 'https://hockey-live.fly.dev'
-        : '';
+    // Older MSX WebViews reject Fly's TLS. On GitHub Pages both the UI and
+    // the regularly refreshed schedule snapshot come from the same host.
+    var githubPages = /(^|\.)github\.io$/i.test(window.location.hostname);
     function clean(value) { return (value || '').replace(/\s+/g, ' ').trim(); }
     function sourceGroupLabel(value) {
         var group = clean(value).replace(/:$/, '');
@@ -53,6 +51,27 @@
         return /^https?:/.test(anchor.href) ? anchor.href : '';
     }
     function playerFromLink(url) {
+        var youtube = /^https:\/\/onhockey\.tv\/np_youtube\.php\?channel=([A-Za-z0-9_-]{11})$/i.exec(url);
+        if (youtube) {
+            return {type:'embedded', url:'https://www.youtube-nocookie.com/embed/' + youtube[1] + '?autoplay=1&playsinline=1&controls=1&rel=0&enablejsapi=1&mute=1'};
+        }
+        var vk = /^https:\/\/onhockey\.tv\/np_vk\.php\?channel=([^#]+)$/i.exec(url);
+        if (vk) {
+            var vkChannel;
+            try { vkChannel = decodeURIComponent(vk[1]); } catch (error) { return null; }
+            var vkParts = /^(-?\d+)&id=(\d+)$/.exec(vkChannel);
+            if (vkParts) {
+                return {type:'embedded', url:'https://vk.com/video_ext.php?oid=' + vkParts[1] + '&id=' + vkParts[2] + '&hd=2&autoplay=1'};
+            }
+        }
+        var webcaster = /^https:\/\/onhockey\.tv\/np_webcaster\.php\?channel=([^#]+)$/i.exec(url);
+        if (webcaster) {
+            var webcasterChannel;
+            try { webcasterChannel = decodeURIComponent(webcaster[1]); } catch (error) { return null; }
+            if (/^[a-z0-9_\-/]+$/i.test(webcasterChannel)) {
+                return {type:'embedded', url:prepareWcaster('https://www.webcaster.pro/iframe/feed/start/' + webcasterChannel)};
+            }
+        }
         var match = /^https:\/\/onhockey\.tv\/np_(?:stream400|webcaster)\.php\?channel=(.+)$/i.exec(url);
         if (!match) { return null; }
         var channel = match[1];
@@ -196,13 +215,26 @@
     }
     function downloadText(url, referer, callback) {
         if (!root.tizen || !tizen.download || !tizen.filesystem) {
-            // The MSX build is a normal web app. Its same-origin Pages
-            // worker fetches the provider HTML so the browser does not hit
-            // the provider's CORS policy directly.
+            // GitHub Pages cannot run a proxy. It publishes a UTF-8 schedule
+            // snapshot, refreshed by GitHub Actions every ten minutes.
             var cancelled = false;
+            if (githubPages) {
+                if (!/^https:\/\/onhockey\.tv\/schedule_table\.php/i.test(url)) {
+                    callback(new Error('Этот источник требует серверный разбор и временно недоступен в версии GitHub Pages.'));
+                    return function () {};
+                }
+                fetch('data/schedule.html?_=' + Date.now(), {cache:'no-store'})
+                    .then(function (response) {
+                        if (!response.ok) { throw new Error('Сервер вернул HTTP ' + response.status + '.'); }
+                        return response.text();
+                    })
+                    .then(function (text) { if (!cancelled) { callback(null, text); } })
+                    .catch(function (error) { if (!cancelled) { callback(error); } });
+                return function () { cancelled = true; };
+            }
             var endpoint = /^https:\/\/onhockey\.tv\/schedule_table\.php/i.test(url)
-                ? apiBase + '/api/schedule?_=' + Date.now()
-                : apiBase + '/api/proxy?url=' + encodeURIComponent(url) + '&referer=' + encodeURIComponent(referer || base);
+                ? '/api/schedule?_=' + Date.now()
+                : '/api/proxy?url=' + encodeURIComponent(url) + '&referer=' + encodeURIComponent(referer || base);
             fetch(endpoint, {cache:'no-store', credentials:'same-origin'})
                 .then(function (response) {
                     if (!response.ok) { throw new Error('Сервер вернул HTTP ' + response.status + '.'); }

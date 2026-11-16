@@ -1,0 +1,33 @@
+name: Update hockey schedule
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/10 * * * *'
+  push:
+    paths:
+      - 'scripts/update-schedule.mjs'
+      - '.github/workflows/update-schedule.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/update-schedule.mjs
+      - name: Commit refreshed schedule
+        run: |
+          if git diff --quiet -- data/schedule.html; then
+            exit 0
+          fi
+          git config user.name "hockey.live bot"
+          git config user.email "41898282+hockeyegor@users.noreply.github.com"
+          git add data/schedule.html
+          git commit -m "Update schedule snapshot"
+          git push
