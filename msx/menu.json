@@ -1,0 +1,23 @@
+{
+  "headline": "hockey.live",
+  "menu": [
+    {
+      "label": "Открыть hockey.live",
+      "data": {
+        "type": "pages",
+        "headline": "hockey.live",
+        "pages": [
+          {
+            "items": [
+              {
+                "layout": "0,0,12,6",
+                "label": "Открыть расписание матчей",
+                "action": "link:replace:https://hockey-live.fly.dev/index.html"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

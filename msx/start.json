@@ -1,0 +1,5 @@
+{
+  "name": "hockey.live",
+  "version": "1.1.0",
+  "parameter": "menu:https://hockeyegor.github.io/msx/menu.json"
+}
