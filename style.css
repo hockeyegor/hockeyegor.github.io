@@ -1,0 +1,90 @@
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#08111f;color:#f7fbff;font-family:Arial,sans-serif}button{font:inherit;cursor:pointer}.hidden{display:none!important}#app{height:100%;padding:28px 38px;background:linear-gradient(135deg,#08111f,#101d31 58%,#162942)}header{height:56px;display:flex;justify-content:space-between;align-items:center}.brand{font-size:32px;font-weight:700;letter-spacing:3px}.brand span{color:#64e6bc}#clock{font-size:20px;color:#a9bbd0}.tv-layout{height:calc(100% - 112px);display:grid;grid-template-columns:220px minmax(0,1fr) 255px;gap:22px}.tv-layout>aside,.schedule-area{min-height:0}.tv-layout>aside{background:#132237;border:1px solid #243957;border-radius:18px;padding:18px;min-height:0;display:flex;flex-direction:column;overflow:hidden}.tv-layout aside h2{margin:0 0 15px;color:#9cb3cc;font-size:14px;text-transform:uppercase;letter-spacing:.12em;flex:0 0 auto}.schedule-area{display:flex;flex-direction:column;min-width:0}.featured-match{background:linear-gradient(135deg,#1d4261,#172b45);border-radius:17px;padding:20px 23px;min-height:125px}.featured-kicker{color:#64e6bc;font-size:13px;letter-spacing:.14em;margin:0 0 9px}.featured-match h1{font-size:30px;margin:0 0 7px}.featured-match #status{font-size:17px;color:#b8c9db;min-height:22px;margin:0}.league-button{display:block;width:100%;text-align:left;background:transparent;color:#d9e7f5;border:0;border-radius:10px;padding:12px;margin:3px 0;font-size:16px}.league-button:focus,.league-button.active{outline:0;background:#64e6bc;color:#06151b;font-weight:700}.league-button:focus{box-shadow:0 0 0 3px #64e6bc55}#toolbar{margin:15px 0;display:flex;gap:8px;min-height:42px}#toolbar button{font-size:16px;border:1px solid #36516d;color:#d9e7f5;background:#20344b;border-radius:9px;padding:10px 15px;margin:0}#toolbar button:focus,.source:focus,.card:focus{outline:0;border-color:#64e6bc;box-shadow:0 0 0 3px #64e6bc45}#list{min-height:0;overflow-y:auto;padding:0 8px 52px 0}.league-list{display:block}.league-section{margin:0 0 16px}.league-heading{display:flex;align-items:center;justify-content:space-between;margin:0 0 9px;padding:12px 16px;border-left:4px solid #64e6bc;border-bottom:1px solid #314155;background:#142331;font-size:22px;letter-spacing:.5px}.league-heading span{font-size:14px;font-weight:400;letter-spacing:0;color:#a9b6ca}.league-games{display:flex;flex-wrap:wrap}.card{width:calc(50% - 9px);min-height:91px;margin:0 18px 12px 0;text-align:left;padding:15px 18px;background:#172a40;border:1px solid #2a4562;border-radius:12px;color:#f7fbff}.card:nth-child(even){margin-right:0}.card .meta{display:block;color:#70edba;font-size:14px;margin-bottom:9px}.card .title{display:block;font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card:focus{background:#244866}.empty{color:#a9b6ca;font-size:19px;padding:25px}#sourceHint{color:#9cb0c4;font-size:15px;line-height:1.45;margin:0 0 14px;flex:0 0 auto}#sourceList{min-height:0;flex:1 1 auto;overflow-y:auto;overflow-x:hidden;padding:0 7px 8px 0;scrollbar-width:auto}#sourceList::-webkit-scrollbar{width:10px}#sourceList::-webkit-scrollbar-thumb{background:#36567c;border-radius:10px}.source{display:block;width:100%;text-align:left;background:#1c3553;color:#fff;border:1px solid #36567c;border-radius:10px;padding:13px 12px;margin:8px 0;font-size:15px}.source.primary{background:#64e6bc;color:#06151b;border-color:#64e6bc;font-weight:700}#sourcePanel.selected h2{color:#64e6bc}footer{position:absolute;left:38px;right:38px;bottom:13px;color:#8494aa;font-size:14px}#playback,#webplayer,#avplayer{position:absolute;left:0;top:0;width:100%;height:100%;border:0}#playback{background:#000}#avplayer{z-index:0}#webplayer{z-index:1;background:#000}#playerbar{position:absolute;z-index:3;top:0;left:0;right:0;background:rgba(10,16,25,.94);padding:18px 32px}#playerTitle{font-size:23px;margin-right:24px;display:inline-block;max-width:35%;vertical-align:middle}#playerbar button{font-size:20px;padding:10px 18px;border:3px solid transparent;color:#e3eaf5;background:#202b3b;border-radius:12px;margin-right:14px}#playerbar button:focus{outline:0;border-color:#70edba;background:#30493f}#playerStatus{font-size:18px;color:#b9c8db;margin:12px 0 0}#playerbar.dim{opacity:0;pointer-events:none}#modal{position:absolute;inset:0;z-index:10;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center}.dialog{max-width:1050px;background:#182334;border-radius:20px;padding:44px}.dialog h2{font-size:34px}.dialog p{font-size:25px;line-height:1.6;white-space:pre-line}.dialog button{margin-top:20px;border:3px solid transparent;color:#e3eaf5;background:#202b3b;border-radius:12px;padding:14px 24px}.dialog button:focus{outline:0;border-color:#70edba}@media(max-width:1100px){#app{padding:22px}.tv-layout{grid-template-columns:185px minmax(0,1fr) 220px;gap:14px}.card{width:100%;margin-right:0}.featured-match h1{font-size:25px}footer{left:22px;right:22px}}
+ .league-button.active{outline:0;background:#64e6bc;color:#06151b;font-weight:700}.league-button:focus{outline:0;background:transparent;color:#d9e7f5;box-shadow:0 0 0 3px #64e6bc55}
+ .selected-match{margin-top:4px;min-height:260px;padding:38px 34px;border:1px solid #31526f;border-radius:18px;background:linear-gradient(135deg,#1a3b59,#13263d 72%);display:flex;flex-direction:column;justify-content:center}.selected-match-kicker{margin:0 0 18px;color:#64e6bc;font-size:16px;letter-spacing:.1em;text-transform:uppercase}.selected-match h2{font-size:38px;margin:0 0 14px}.selected-match p:last-child{margin:0;color:#b8cadb;font-size:20px}
+  #leagueNav{overflow-y:auto;scrollbar-width:none}#leagueNav::-webkit-scrollbar{display:none}
+#adSlot{min-height:90px;max-height:120px;margin:0 0 14px;padding:6px 10px;overflow:hidden;border:1px solid #243957;border-radius:12px;background:rgba(8,17,31,.55)}#yandex_rtb_R-A-20267715-1{width:100%;min-height:78px}#adSlot iframe{max-width:100%;border:0}
+/* Source groups mirror the feed/language labels from the schedule. */
+.source-group-title{margin:14px 0 4px;color:#64e6bc;font-size:14px;letter-spacing:.08em;text-transform:uppercase}.source-group-title:first-child{margin-top:0}
+#nativeVideo{position:absolute;left:0;top:0;width:100%;height:100%;z-index:1;background:#000;object-fit:contain;border:0}
+#playerTouchGuard{position:absolute;inset:0;z-index:2;background:transparent;cursor:pointer}
+#webplayer.youtube-player{left:50%!important;top:50%!important;width:100vw!important;height:100vh!important;transform:translate(-50%,-50%);}
+.msx-playback #playerbar{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:12px 20px;}
+.msx-playback #playerTitle{flex:1 1 240px;min-width:0;max-width:none;margin:0;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.msx-playback #playerbar button{flex:0 0 auto;margin:0;font-size:15px;padding:8px 12px;}
+.msx-playback #playerStatus{flex:0 0 100%;margin:2px 0 0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* Phone layout: the TV three-column canvas becomes a readable single-column page. */
+@media (max-width: 700px) {
+  html, body { min-height:100%; height:auto; overflow-x:hidden; overflow-y:auto; }
+  #app { min-height:100vh; height:auto; padding:16px 12px 54px; background:linear-gradient(160deg,#08111f,#101d31 70%,#162942); }
+  header { height:42px; margin-bottom:12px; }
+  .brand { font-size:22px; letter-spacing:1.5px; }
+  #clock { font-size:13px; }
+  .tv-layout { height:auto; display:flex; flex-direction:column; gap:12px; }
+  .tv-layout > aside, .schedule-area { min-height:auto; width:100%; }
+  .tv-layout > aside { padding:12px; border-radius:14px; }
+  #leagueNav { order:0; max-height:180px; }
+  #leagueNav h2, .tv-layout aside h2 { font-size:12px; margin-bottom:7px; }
+  #leagueButtons { display:flex; flex-wrap:wrap; gap:4px; overflow:visible; }
+  .league-button { width:auto; flex:0 0 auto; padding:8px 10px; margin:0; font-size:13px; }
+  .featured-match { min-height:0; padding:15px; border-radius:14px; }
+  .featured-kicker { font-size:10px; margin-bottom:5px; }
+  .featured-match h1 { font-size:22px; margin-bottom:5px; }
+  .featured-match #status { font-size:13px; }
+  #toolbar { margin:10px 0; min-height:0; flex-wrap:wrap; }
+  #toolbar button { font-size:14px; padding:8px 11px; }
+  #adSlot { min-height:0; max-height:90px; margin-bottom:10px; }
+  #list { overflow:visible; padding:0 0 12px; }
+  .league-heading { font-size:18px; padding:9px 11px; }
+  .card, .card:nth-child(even) { width:100%; min-height:0; margin:0 0 8px; padding:12px 13px; }
+  .card .meta { font-size:11px; margin-bottom:5px; }
+  .card .title { font-size:16px; }
+  #sourcePanel { order:2; max-height:330px; }
+  #sourceList { overflow-y:auto; max-height:245px; }
+  .source { padding:10px; margin:6px 0; font-size:14px; }
+  #sourceHint { font-size:13px; margin-bottom:8px; }
+  footer { position:static; margin-top:12px; font-size:12px; line-height:1.45; }
+  #playerbar { padding:12px 14px; }
+  #playerTitle { display:block; max-width:100%; margin:0 0 9px; font-size:17px; line-height:1.2; }
+  #playerbar button { font-size:14px; padding:8px 11px; margin:0 6px 6px 0; border-width:2px; border-radius:9px; }
+  #playerStatus { font-size:13px; margin:4px 0 0; }
+  .dialog { max-width:calc(100vw - 24px); padding:22px; border-radius:14px; }
+  .dialog h2 { font-size:24px; }
+  .dialog p { font-size:16px; line-height:1.45; }
+}
+
+/* Landscape phones/tablets report a wide viewport, but still have little vertical space. */
+@media (orientation: landscape) and (max-height: 700px) and (pointer: coarse) {
+  html, body { height:100%; overflow:hidden; }
+  #app { height:100%; min-height:0; padding:10px 20px 30px; }
+  header { height:30px; margin-bottom:8px; }
+  .brand { font-size:24px; letter-spacing:1.5px; }
+  #clock { font-size:14px; }
+  .tv-layout { height:calc(100% - 38px); grid-template-columns:160px minmax(0,1fr) 200px; gap:10px; }
+  .tv-layout > aside { padding:10px; border-radius:13px; }
+  .tv-layout aside h2 { font-size:11px; margin-bottom:7px; }
+  #leagueNav { overflow:hidden; }
+  .league-button { padding:7px 9px; margin:1px 0; font-size:13px; }
+  .schedule-area { min-height:0; overflow:hidden; display:flex; flex-direction:column; }
+  .featured-match { min-height:82px; padding:12px 14px; border-radius:13px; }
+  .featured-kicker { font-size:10px; margin-bottom:4px; }
+  .featured-match h1 { font-size:21px; margin:0 0 3px; white-space:nowrap; }
+  .featured-match #status { font-size:13px; }
+  #toolbar { position:relative; z-index:2; flex:0 0 34px; height:34px; margin:7px 0; min-height:34px; gap:5px; flex-wrap:nowrap; overflow:visible; }
+  #toolbar button { flex:1 1 0; min-width:0; font-size:12px; padding:7px 5px; white-space:nowrap; }
+  #adSlot { display:none; }
+  #list { position:relative; z-index:1; flex:1 1 auto; min-height:0; overflow-y:auto; padding-bottom:44px; }
+  .league-heading { font-size:16px; padding:7px 10px; margin-bottom:6px; }
+  .card, .card:nth-child(even) { min-height:0; margin-bottom:6px; padding:9px 11px; }
+  .card .meta { font-size:10px; margin-bottom:3px; }
+  .card .title { font-size:15px; }
+  #sourcePanel { overflow:hidden; }
+  #sourceList { overflow-y:auto; }
+  .source { padding:8px 9px; margin:5px 0; font-size:13px; }
+  #sourceHint { font-size:12px; margin-bottom:6px; }
+  footer { left:20px; right:20px; bottom:0; padding:5px 0 3px; font-size:11px; background:linear-gradient(transparent,#08111f 35%); }
+  #playerbar { display:grid; grid-template-columns:minmax(0,1fr) repeat(3,auto); align-items:center; column-gap:6px; row-gap:3px; padding:9px 14px; }
+  #playerTitle { display:block; min-width:0; max-width:none; margin:0; font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  #playerbar button { margin:0; font-size:13px; padding:7px 9px; }
+  #playerStatus { grid-column:1 / -1; margin:2px 0 0; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+}
