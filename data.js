@@ -42,12 +42,25 @@
     }
     function absolute(value, origin) {
         if (!value || /^(javascript|data|file):/i.test(value)) { return ''; }
+        // MSX on older Tizen models sometimes creates an <a> element but
+        // never resolves its relative href against <base>. Resolve ordinary
+        // schedule links ourselves before using the DOM fallback.
+        var raw = String(value).replace(/&amp;/gi, '&').replace(/^\s+|\s+$/g, '');
+        if (/^https?:\/\//i.test(raw)) { return raw; }
+        if (/^\/\//.test(raw)) { return 'https:' + raw; }
+        var baseUrl = origin || base;
+        var host = /^(https?:\/\/[^/]+)/i.exec(baseUrl);
+        if (!host) { return ''; }
+        if (raw.charAt(0) === '/') { return host[1] + raw; }
+        if (/^[^?#]+(?:\?[^#]*)?(?:#.*)?$/.test(raw)) {
+            return baseUrl.replace(/[^/]*$/, '') + raw;
+        }
         var doc = document.implementation.createHTMLDocument('');
         var baseNode = doc.createElement('base');
-        baseNode.href = origin || base;
+        baseNode.href = baseUrl;
         doc.head.appendChild(baseNode);
         var anchor = doc.createElement('a');
-        anchor.href = value;
+        anchor.href = raw;
         return /^https?:/.test(anchor.href) ? anchor.href : '';
     }
     function playerFromLink(url) {
